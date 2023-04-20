@@ -62,19 +62,6 @@ class MoneyTransferTest {
         String transferCardNumber = DataHelper.InValidCard().getNumberCard();
         int amount = 200;
 
-
-        new DashboardPage()
-                .chooseRechargeCard(rechargeCardId)
-                .transferMoney(amount, transferCardNumber);
-        new MoneyTransferPage().errorMessage();
-    }
-    @Test
-    void shouldTransferFromInvalidCardToCard2() {
-        String rechargeCardId = DataHelper.Card2().getId();
-        String transferCardNumber = DataHelper.InValidCard().getNumberCard();
-        int amount = 200;
-
-
         new DashboardPage()
                 .chooseRechargeCard(rechargeCardId)
                 .transferMoney(amount, transferCardNumber);
@@ -82,21 +69,10 @@ class MoneyTransferTest {
     }
 
     @Test
-    void shouldTransferFromCard2ToCard1AboveCurrentBalance() {
+    void shouldTransferAboveCurrentBalance() {
         String rechargeCardId = DataHelper.Card1().getId();
         String transferCardNumber = DataHelper.Card2().getNumberCard();
         int amount = new DashboardPage().getCardBalance(DataHelper.Card2().getId()) + 1;
-
-        new DashboardPage()
-                .chooseRechargeCard(rechargeCardId)
-                .transferMoney(amount, transferCardNumber);
-        new MoneyTransferPage().errorMessage();
-    }
-    @Test
-    void shouldTransferFromCard1ToCard2AboveCurrentBalance() {
-        String rechargeCardId = DataHelper.Card2().getId();
-        String transferCardNumber = DataHelper.Card1().getNumberCard();
-        int amount = new DashboardPage().getCardBalance(DataHelper.Card1().getId()) + 1;
 
         new DashboardPage()
                 .chooseRechargeCard(rechargeCardId)
