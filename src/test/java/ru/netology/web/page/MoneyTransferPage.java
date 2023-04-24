@@ -16,14 +16,18 @@ public class MoneyTransferPage {
     private SelenideElement errorMessage = $("[data-test-id=error-notification]");
 
 
-    public DashboardPage transferMoney(int amount, String transferCardNumber) {
+
+    public DashboardPage validTransferMoney(int amount, String transferCardNumber) {
+        transferMoney(amount, transferCardNumber);
+        return new DashboardPage();
+    }
+    public void transferMoney(int amount, String transferCardNumber) {
         amountField.setValue(Integer.toString(amount));
         fromField.setValue(transferCardNumber);
         transferButton.click();
-        return new DashboardPage();
     }
 
-    public void errorMessage() {
+    public void findErrorMessage() {
         errorMessage.shouldHave(Condition.text("Ошибка"));
         errorMessage.shouldBe(visible);
     }
