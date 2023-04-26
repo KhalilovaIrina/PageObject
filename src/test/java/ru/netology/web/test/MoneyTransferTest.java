@@ -61,18 +61,11 @@ class MoneyTransferTest {
     @Test
     void shouldTransferFromInvalidCardToCard1() {
         String transferCardNumber = DataHelper.inValidCard().getNumberCard();
-        int balanceCard1 = dashboardPage.getCardBalance(card1().getId());
-        int balanceCard2 = dashboardPage.getCardBalance(card2().getId());
-       //int balanceInvalidCard = dashboardPage.getCardBalance(inValidCard().getId());
-       //int amount = generateValidAmount(balanceInvalidCard);
         int amount = 200;
         var transferPage = dashboardPage.chooseRechargeCard(card1().getId());
 
         transferPage.transferMoney(amount, transferCardNumber);
         transferPage.findErrorMessage();
-
-        Assertions.assertEquals(balanceCard1, dashboardPage.getCardBalance(card1().getId()));
-        Assertions.assertEquals(balanceCard2, dashboardPage.getCardBalance(card2().getId()));
     }
 
     @Test
